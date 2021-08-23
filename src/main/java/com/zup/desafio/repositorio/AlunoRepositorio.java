@@ -1,4 +1,4 @@
-package com.zup.desafio.modelo.repositorio;
+package com.zup.desafio.repositorio;
 
 import org.springframework.data.repository.CrudRepository;
 
