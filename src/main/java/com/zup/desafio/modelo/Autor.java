@@ -1,6 +1,7 @@
 package com.zup.desafio.modelo;
 
 import com.zup.desafio.web.AutorRequest;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,8 @@ public class Autor {
 
     private String nome;
     private String email;
+
+    @Length(max = 400)
     private String descricao;
 
     @NotNull
