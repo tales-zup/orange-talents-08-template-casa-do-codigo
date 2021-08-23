@@ -18,4 +18,15 @@ public class AlunoRequest {
     @Length(max = 400)
     private String descricao;
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
 }
