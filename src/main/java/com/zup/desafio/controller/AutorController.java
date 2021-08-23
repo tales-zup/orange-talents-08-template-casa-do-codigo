@@ -4,6 +4,7 @@ import com.zup.desafio.modelo.Autor;
 import com.zup.desafio.repositorio.AutorRepositorio;
 import com.zup.desafio.web.AutorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,11 +23,15 @@ public class AutorController {
     @PostMapping
     public ResponseEntity<?> cadastrarAutor(@RequestBody @Valid AutorRequest request) {
 
-        Autor autor = new Autor(request);
+        Autor autor = repositorio.findByEmail(request.getEmail());
+        if(autor != null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Já existe um autor com esse email.");
+
+        autor = new Autor(request);
         autor.setarDataCadastro();
         repositorio.save(autor);
 
-        return ResponseEntity.ok("Aluno cadastrado com sucesso!");
+        return ResponseEntity.ok("Autor cadastrado com sucesso!");
     }
 
 }

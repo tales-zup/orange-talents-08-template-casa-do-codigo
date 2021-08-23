@@ -3,10 +3,7 @@ package com.zup.desafio.modelo;
 import com.zup.desafio.web.AutorRequest;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -18,6 +15,8 @@ public class Autor {
     private Long id;
 
     private String nome;
+
+    @Column(unique = true)
     private String email;
 
     @Length(max = 400)
@@ -30,6 +29,10 @@ public class Autor {
         nome = request.getNome();
         email = request.getEmail();
         descricao = request.getDescricao();
+    }
+
+    @Deprecated
+    public Autor() {
     }
 
     public void setarDataCadastro() {
