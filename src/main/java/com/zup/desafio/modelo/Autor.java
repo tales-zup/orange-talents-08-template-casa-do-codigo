@@ -1,6 +1,6 @@
 package com.zup.desafio.modelo;
 
-import com.zup.desafio.web.AlunoRequest;
+import com.zup.desafio.web.AutorRequest;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +23,7 @@ public class Autor {
     @NotNull
     private LocalDate dataCadastro;
 
-    public Autor(AlunoRequest request) {
+    public Autor(AutorRequest request) {
         nome = request.getNome();
         email = request.getEmail();
         descricao = request.getDescricao();

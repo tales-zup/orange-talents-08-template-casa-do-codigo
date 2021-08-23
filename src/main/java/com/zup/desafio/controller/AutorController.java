@@ -2,7 +2,7 @@ package com.zup.desafio.controller;
 
 import com.zup.desafio.modelo.Autor;
 import com.zup.desafio.repositorio.AutorRepositorio;
-import com.zup.desafio.web.AlunoRequest;
+import com.zup.desafio.web.AutorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +20,7 @@ public class AutorController {
     private AutorRepositorio repositorio;
 
     @PostMapping
-    public ResponseEntity<?> cadastrarAutor(@RequestBody @Valid AlunoRequest request) {
+    public ResponseEntity<?> cadastrarAutor(@RequestBody @Valid AutorRequest request) {
 
         Autor autor = new Autor(request);
         autor.setarDataCadastro();
