@@ -28,6 +28,7 @@ public class LivroRequest {
     private Integer numeroDePaginas;
 
     @NotEmpty
+    @UniqueValue(domainClass = LivroRequest.class, fieldName = "isbn", message = "Já existe um Livro com esse isbn.")
     private String isbn;
 
     @Future
