@@ -1,5 +1,7 @@
 package com.zup.desafio.modelo;
 
+import com.zup.desafio.web.CategoriaRequest;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,4 +14,10 @@ public class Categoria {
     @Column(unique = true)
     private String nome;
 
+    public Categoria(CategoriaRequest request) {
+        this.nome = request.getNome();
+    }
+
+    public Categoria() {
+    }
 }
