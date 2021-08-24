@@ -11,6 +11,7 @@ public class Livro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String titulo;
     private String resumo;
     private String sumario;
     private BigDecimal preco;
