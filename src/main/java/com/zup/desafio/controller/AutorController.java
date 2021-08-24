@@ -23,11 +23,7 @@ public class AutorController {
     @PostMapping
     public ResponseEntity<?> cadastrarAutor(@RequestBody @Valid AutorRequest request) {
 
-        Autor autor = repositorio.findByEmail(request.getEmail());
-        if(autor != null)
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Já existe um autor com esse email.");
-
-        autor = new Autor(request);
+        Autor autor = new Autor(request);
         autor.setarDataCadastro();
         repositorio.save(autor);
 

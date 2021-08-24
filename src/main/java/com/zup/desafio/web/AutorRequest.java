@@ -1,5 +1,6 @@
 package com.zup.desafio.web;
 
+import com.zup.desafio.validation.NotEmailDuplicado;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -12,6 +13,7 @@ public class AutorRequest {
 
     @NotEmpty
     @Email
+    @NotEmailDuplicado
     private String email;
 
     @NotEmpty
