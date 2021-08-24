@@ -1,6 +1,7 @@
 package com.zup.desafio.web;
 
-import com.zup.desafio.validation.NotEmailDuplicado;
+import com.zup.desafio.modelo.Autor;
+import com.zup.desafio.validation.UniqueValue;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -13,7 +14,7 @@ public class AutorRequest {
 
     @NotEmpty
     @Email
-    @NotEmailDuplicado
+    @UniqueValue(domainClass = Autor.class, fieldName = "email", message = "Já existe um Autor com esse nome.")
     private String email;
 
     @NotEmpty
