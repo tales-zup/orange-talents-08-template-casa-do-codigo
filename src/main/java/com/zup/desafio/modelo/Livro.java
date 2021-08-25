@@ -1,6 +1,5 @@
 package com.zup.desafio.modelo;
 
-import com.zup.desafio.web.LivroRequest;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

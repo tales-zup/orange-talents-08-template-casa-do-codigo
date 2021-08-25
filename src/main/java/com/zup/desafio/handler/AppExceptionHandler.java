@@ -37,8 +37,13 @@ public class AppExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(EntityNotFoundException.class)
     public ErroDeRequest handleEntityNotFound(EntityNotFoundException exception) {
-        ErroDeRequest resposta = new ErroDeRequest("id", exception.getMessage());
-        return resposta;
+        return new ErroDeRequest("id", exception.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(BadRequestException.class)
+    public ErroDeRequest handleBadRequestException(BadRequestException exception) {
+        return new ErroDeRequest(null, exception.getMessage());
     }
 
 }

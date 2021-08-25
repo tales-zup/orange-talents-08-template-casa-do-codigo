@@ -1,9 +1,6 @@
 package com.zup.desafio.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Estado {
@@ -14,8 +11,12 @@ public class Estado {
 
     private String nome;
 
-    public Estado(String nome) {
+    @ManyToOne
+    private Pais pais;
+
+    public Estado(String nome, Pais pais) {
         this.nome = nome;
+        this.pais = pais;
     }
 
     public Estado() {
