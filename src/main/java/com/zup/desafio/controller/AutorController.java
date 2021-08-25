@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
@@ -20,10 +21,10 @@ public class AutorController {
     private AutorRepositorio repositorio;
 
     @PostMapping
+    @Transactional
     public ResponseEntity<?> cadastrarAutor(@RequestBody @Valid AutorRequest request) {
 
         Autor autor = new Autor(request);
-        autor.setarDataCadastro();
         repositorio.save(autor);
 
         return ResponseEntity.ok("Autor cadastrado com sucesso!");

@@ -1,8 +1,14 @@
 package com.zup.desafio.web;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zup.desafio.modelo.Autor;
+import com.zup.desafio.modelo.Categoria;
+import com.zup.desafio.modelo.Livro;
+import com.zup.desafio.validation.ExistsId;
 import com.zup.desafio.validation.UniqueValue;
 
+import javax.persistence.EntityManager;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,7 +16,7 @@ import java.time.LocalDate;
 public class LivroRequest {
 
     @NotEmpty
-    @UniqueValue(domainClass = LivroRequest.class, fieldName = "titulo", message = "Já existe um Livro com esse titulo.")
+    @UniqueValue(domainClass = Livro.class, fieldName = "titulo", message = "Já existe um Livro com esse titulo.")
     private String titulo;
 
     @NotEmpty
@@ -28,16 +34,63 @@ public class LivroRequest {
     private Integer numeroDePaginas;
 
     @NotEmpty
-    @UniqueValue(domainClass = LivroRequest.class, fieldName = "isbn", message = "Já existe um Livro com esse isbn.")
+    @UniqueValue(domainClass = Livro.class, fieldName = "isbn", message = "Já existe um Livro com esse isbn.")
     private String isbn;
 
     @Future
+    @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate dataPublicacao;
 
     @NotNull
+    @ExistsId(domainClass = Autor.class, fieldName = "id", message = "Esse autor não existe.")
     private Long idAutor;
 
     @NotNull
+    @ExistsId(domainClass = Categoria.class, fieldName = "id", message = "Essa categoria não existe.")
     private Long idCategoria;
 
+    public Livro converter(EntityManager em) {
+        Livro livro = new Livro(this);
+        Categoria categoria = em.find(Categoria.class, this.idCategoria);
+        Autor autor = em.find(Autor.class, this.idAutor);
+        livro.setCategoria(categoria);
+        livro.setAutor(autor);
+        return livro;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getResumo() {
+        return resumo;
+    }
+
+    public String getSumario() {
+        return sumario;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public Integer getNumeroDePaginas() {
+        return numeroDePaginas;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public LocalDate getDataPublicacao() {
+        return dataPublicacao;
+    }
+
+    public Long getIdAutor() {
+        return idAutor;
+    }
+
+    public Long getIdCategoria() {
+        return idCategoria;
+    }
 }

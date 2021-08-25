@@ -29,13 +29,11 @@ public class Autor {
         nome = request.getNome();
         email = request.getEmail();
         descricao = request.getDescricao();
+        dataCadastro = LocalDate.now();
     }
 
     @Deprecated
     public Autor() {
     }
 
-    public void setarDataCadastro() {
-        this.dataCadastro = LocalDate.now();
-    }
 }

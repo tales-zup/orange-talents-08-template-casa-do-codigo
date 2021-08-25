@@ -18,6 +18,7 @@ public class Categoria {
         this.nome = request.getNome();
     }
 
+    @Deprecated
     public Categoria() {
     }
 }
