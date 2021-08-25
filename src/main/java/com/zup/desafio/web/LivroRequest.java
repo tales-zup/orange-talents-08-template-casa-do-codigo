@@ -49,7 +49,7 @@ public class LivroRequest {
     @ExistsId(domainClass = Categoria.class, fieldName = "id", message = "Essa categoria não existe.")
     private Long idCategoria;
 
-    public Livro converter(EntityManager em) {
+    public Livro toModel(EntityManager em) {
         Categoria categoria = em.find(Categoria.class, this.idCategoria);
         Autor autor = em.find(Autor.class, this.idAutor);
         return new Livro(titulo, resumo, sumario, preco, numeroDePaginas,

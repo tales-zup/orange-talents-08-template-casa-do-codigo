@@ -31,7 +31,7 @@ public class LivroController {
     @Transactional
     public ResponseEntity<?> cadastrarLivro(@RequestBody @Valid LivroRequest request) {
 
-        Livro livro = request.converter(em);
+        Livro livro = request.toModel(em);
         repositorio.save(livro);
         return ResponseEntity.ok("Livro cadastrado com sucesso!");
 
