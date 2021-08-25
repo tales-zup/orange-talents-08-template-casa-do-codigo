@@ -1,4 +1,4 @@
-package com.zup.desafio.validation;
+package com.zup.desafio.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -10,18 +10,19 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestControllerAdvice
-public class ErroDeValidacaoHandler {
+public class AppExceptionHandler {
 
     @Autowired
     private MessageSource messageSource;
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErroDeRequest> handle(MethodArgumentNotValidException exception) {
+    public List<ErroDeRequest> handleMethodNotValid(MethodArgumentNotValidException exception) {
         List<ErroDeRequest> resposta = new ArrayList<>();
 
         List<FieldError> fieldErrorList = exception.getBindingResult().getFieldErrors();
@@ -30,6 +31,13 @@ public class ErroDeValidacaoHandler {
             ErroDeRequest erro = new ErroDeRequest(e.getField(), mensagem);
             resposta.add(erro);
         });
+        return resposta;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ErroDeRequest handleEntityNotFound(EntityNotFoundException exception) {
+        ErroDeRequest resposta = new ErroDeRequest("id", exception.getMessage());
         return resposta;
     }
 

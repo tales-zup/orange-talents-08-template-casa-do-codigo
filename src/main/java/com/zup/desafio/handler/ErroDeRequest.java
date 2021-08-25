@@ -1,4 +1,4 @@
-package com.zup.desafio.validation;
+package com.zup.desafio.handler;
 
 public class ErroDeRequest {
 

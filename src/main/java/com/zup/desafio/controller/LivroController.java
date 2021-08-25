@@ -2,21 +2,20 @@ package com.zup.desafio.controller;
 
 import com.zup.desafio.modelo.Livro;
 import com.zup.desafio.repositorio.LivroRepositorio;
+import com.zup.desafio.web.LivroDetalheResponse;
 import com.zup.desafio.web.LivroListagemResponse;
 import com.zup.desafio.web.LivroRequest;
-import javassist.tools.web.BadHttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/livros")
@@ -48,6 +47,15 @@ public class LivroController {
             responseList.add(new LivroListagemResponse(livro));
 
         return ResponseEntity.ok().body(responseList);
+    }
+
+    @GetMapping("/{id}")
+    @Transactional
+    public ResponseEntity<LivroDetalheResponse> detalharLivro(@PathVariable("id") Long id) throws EntityNotFoundException {
+        Livro livro = repositorio.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Esse livro não existe."));
+        LivroDetalheResponse response = new LivroDetalheResponse(livro);
+        return ResponseEntity.ok().body(response);
     }
 
 }
