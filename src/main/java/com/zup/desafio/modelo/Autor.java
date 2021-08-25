@@ -25,11 +25,11 @@ public class Autor {
     @NotNull
     private LocalDate dataCadastro;
 
-    public Autor(AutorRequest request) {
-        nome = request.getNome();
-        email = request.getEmail();
-        descricao = request.getDescricao();
-        dataCadastro = LocalDate.now();
+    public Autor(String nome, String email, String descricao) {
+        this.nome = nome;
+        this.email = email;
+        this.descricao = descricao;
+        this.dataCadastro = LocalDate.now();
     }
 
     @Deprecated

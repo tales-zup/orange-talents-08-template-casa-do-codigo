@@ -24,7 +24,7 @@ public class AutorController {
     @Transactional
     public ResponseEntity<?> cadastrarAutor(@RequestBody @Valid AutorRequest request) {
 
-        Autor autor = new Autor(request);
+        Autor autor = new Autor(request.getNome(), request.getEmail(), request.getDescricao());
         repositorio.save(autor);
 
         return ResponseEntity.ok("Autor cadastrado com sucesso!");
