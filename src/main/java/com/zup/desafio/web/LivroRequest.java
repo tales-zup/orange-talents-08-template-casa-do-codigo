@@ -50,12 +50,10 @@ public class LivroRequest {
     private Long idCategoria;
 
     public Livro converter(EntityManager em) {
-        Livro livro = new Livro(this);
         Categoria categoria = em.find(Categoria.class, this.idCategoria);
         Autor autor = em.find(Autor.class, this.idAutor);
-        livro.setCategoria(categoria);
-        livro.setAutor(autor);
-        return livro;
+        return new Livro(titulo, resumo, sumario, preco, numeroDePaginas,
+                isbn, dataPublicacao, categoria, autor);
     }
 
     public String getTitulo() {

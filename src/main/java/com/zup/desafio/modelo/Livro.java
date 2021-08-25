@@ -31,14 +31,17 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(LivroRequest request) {
-        this.titulo = request.getTitulo();
-        this.resumo = request.getResumo();
-        this.sumario = request.getSumario();
-        this.preco = request.getPreco();
-        this.numeroDePaginas = request.getNumeroDePaginas();
-        this.isbn = request.getIsbn();
-        this.dataPublicacao = request.getDataPublicacao();
+    public Livro(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroDePaginas,
+                 String isbn, LocalDate dataPublicacao, Categoria categoria, Autor autor) {
+        this.titulo = titulo;
+        this.resumo = resumo;
+        this.sumario = sumario;
+        this.preco = preco;
+        this.numeroDePaginas = numeroDePaginas;
+        this.isbn = isbn;
+        this.dataPublicacao = dataPublicacao;
+        this.categoria = categoria;
+        this.autor = autor;
     }
 
     public Long getId() {
