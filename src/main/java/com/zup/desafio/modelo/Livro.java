@@ -41,6 +41,14 @@ public class Livro {
         this.dataPublicacao = request.getDataPublicacao();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
