@@ -23,7 +23,7 @@ public class CategoriaController {
     @PostMapping
     @Transactional
     public ResponseEntity<?> cadastrarCategoria(@RequestBody @Valid CategoriaRequest request) {
-        Categoria categoria = new Categoria(request);
+        Categoria categoria = new Categoria(request.getNome());
         repositorio.save(categoria);
 
         return ResponseEntity.ok("Categoria cadastrada com sucesso!");

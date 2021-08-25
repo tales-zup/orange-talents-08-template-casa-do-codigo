@@ -14,8 +14,8 @@ public class Categoria {
     @Column(unique = true)
     private String nome;
 
-    public Categoria(CategoriaRequest request) {
-        this.nome = request.getNome();
+    public Categoria(String nome) {
+        this.nome = nome;
     }
 
     @Deprecated
