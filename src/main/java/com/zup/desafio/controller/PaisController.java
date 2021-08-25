@@ -1,7 +1,7 @@
 package com.zup.desafio.controller;
 
 import com.zup.desafio.modelo.Pais;
-import com.zup.desafio.repositorio.PaisRepository;
+import com.zup.desafio.repositorio.PaisRepositorio;
 import com.zup.desafio.web.PaisRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import javax.validation.Valid;
 public class PaisController {
 
     @Autowired
-    private PaisRepository repository;
+    private PaisRepositorio repository;
 
     @PostMapping
     @Transactional
