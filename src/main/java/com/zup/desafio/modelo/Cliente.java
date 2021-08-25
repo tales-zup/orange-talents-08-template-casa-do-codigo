@@ -38,4 +38,8 @@ public class Cliente {
         this.estado = estado;
         this.pais = pais;
     }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 }
